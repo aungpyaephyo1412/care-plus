@@ -38,6 +38,7 @@ const ValidationInput = ({
             props.type === 'password' && 'pr-[45px]',
             errorMessage && 'border-red-500 ring-red-500'
           )}
+          type={togglePassword ? 'text' : props.type}
         />
         {props.type === 'password' && (
           <button
@@ -53,6 +54,9 @@ const ValidationInput = ({
           </button>
         )}
       </div>
+      {errorMessage && (
+        <p className='text-sm text-red-500 w-full mt-2'>{errorMessage}</p>
+      )}
     </div>
   );
 };

@@ -72,7 +72,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Provider>
-          <ThemeToggle />
+          {/*<ThemeToggle />*/}
           {children}
         </Provider>
       </body>

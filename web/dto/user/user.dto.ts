@@ -12,6 +12,10 @@ export const userDtoSchema = z.object({
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 });
+export const userRegisterDtoSchema = z.object({
+  message: z.string(),
+  data: userDtoSchema,
+});
 export const userLoginDtoSchema = z.object({
   data: userDtoSchema,
   jwt: z.string().min(1),
