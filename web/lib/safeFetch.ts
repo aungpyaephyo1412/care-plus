@@ -7,7 +7,7 @@ const safeFetch = async <T extends ZodSchema<any>>(
   const basePath = process.env.NEXT_PUBLIC_API_URL as string;
   const response = await fetch(`${basePath}${url}`, init);
   const res = await response.json();
-  if (!response.ok) return { error: res.statusText, data: null };
+  if (!response.ok) return { error: res, data: null };
   const validateFields = schema.safeParse(res);
   if (!validateFields.success) {
     console.log(validateFields.error.flatten().fieldErrors);
