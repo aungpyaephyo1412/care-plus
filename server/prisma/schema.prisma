@@ -26,7 +26,6 @@ model User {
   password          String
   address           String?
   dateOfBirth       DateTime?
-  age               Int
   role              Role      @default(User)
   resetToken        String?
   resetTokenExpired DateTime?

@@ -1,7 +1,8 @@
 import mmphone from 'mm-mobile-tool';
 import { z } from 'zod';
 
-export const signinDtoSchema = z.object({
+export const signupDtoSchema = z.object({
+  name: z.string().min(1),
   phone: z
     .string({ message: 'Phone number is required!' })
     .min(11, { message: 'Please enter a valid phone number' })
@@ -13,6 +14,11 @@ export const signinDtoSchema = z.object({
     .string({ message: 'Password is required!' })
     .min(6, { message: 'Password is must be at least 6 characters' })
     .max(12, { message: 'Password is must be at most 12 characters' }),
+  address: z.string().min(1, { message: 'Address is required' }),
+  dateOfBirth: z.coerce.date({
+    message: 'Date of Birth is required',
+    invalid_type_error: 'Date of Birth is required',
+  }),
 });
 
-export type SignUpDto = z.infer<typeof signinDtoSchema>;
+export type SignUpDto = z.infer<typeof signupDtoSchema>;

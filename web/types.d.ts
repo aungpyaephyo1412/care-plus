@@ -11,7 +11,6 @@ declare module 'next-auth' {
     name: string;
     role: Role;
     phone: string;
-    age: number;
     createdAt: Date;
     updatedAt: Date;
     dateOfBirth?: Date | null;
@@ -35,7 +34,6 @@ declare module '@auth/core/jwt' {
     name: string;
     role: Role;
     phone: string;
-    age: number;
     createdAt: Date;
     updatedAt: Date;
     dateOfBirth?: Date | null;

@@ -19,7 +19,7 @@ const ValidationInput = ({
   const [togglePassword, setTogglePassword] = useState(false);
 
   return (
-    <div className='w-full h-auto flex flex-col justify-center items-center'>
+    <div className='w-full h-auto flex flex-col justify-start items-center'>
       {title && (
         <label htmlFor={id} className='w-full text-sm font-semibold mb-2'>
           {title}

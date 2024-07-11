@@ -9,6 +9,7 @@ export const { auth, signIn, signOut, handlers, unstable_update } = NextAuth({
   providers: [
     Credentials({
       async authorize(credentials) {
+        console.log(credentials);
         const { error, data } = await safeFetch(
           userLoginDtoSchema,
           '/auth/login',
@@ -22,13 +23,13 @@ export const { auth, signIn, signOut, handlers, unstable_update } = NextAuth({
             body: JSON.stringify(credentials),
           }
         );
+        console.log(error);
         if (error) return null;
         return {
           id: data.data.id,
           name: data.data.name,
           role: data.data.role,
           phone: data.data.phone,
-          age: data.data.age,
           createdAt: data.data.createdAt,
           updatedAt: data.data.updatedAt,
           dateOfBirth: data.data.dateOfBirth,
@@ -54,7 +55,6 @@ export const { auth, signIn, signOut, handlers, unstable_update } = NextAuth({
             name: user.name,
             role: user.role,
             phone: user.phone,
-            age: user.age,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
             dateOfBirth: user.dateOfBirth,

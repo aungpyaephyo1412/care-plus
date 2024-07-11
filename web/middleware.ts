@@ -1,10 +1,9 @@
-export { auth as middleware } from '@/auth';
+import { authConfig } from '@/auth.config';
+import NextAuth from 'next-auth';
 
-// // This function can be marked `async` if using `await` inside
-// export function middleware(request: NextRequest) {
-//   return NextResponse.redirect(new URL('/home', request.url))
-// }
+export default NextAuth(authConfig).auth;
 
 export const config = {
-  matcher: ['/about/:path*'],
+  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 };

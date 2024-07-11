@@ -39,7 +39,7 @@ const DatePicker = ({ onChange, date, title, errorMessage }: Props) => {
             )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className='w-full' align='end'>
+        <PopoverContent className='w-full text-black' align='end'>
           <Calendar
             selectRange={false}
             value={date}
