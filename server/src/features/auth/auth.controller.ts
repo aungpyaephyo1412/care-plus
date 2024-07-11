@@ -54,7 +54,7 @@ export class AuthController {
   ) {
     const user = await this.authService.findOne({
       where: {
-        phone: loginAuthDto.identifier,
+        phone: loginAuthDto.phone,
       },
     });
     const isPasswordValid = await this.passwordService.validate(

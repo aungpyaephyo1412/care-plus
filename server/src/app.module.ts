@@ -11,6 +11,7 @@ import { AuthGuard } from './features/auth/guards/auth.guard';
 import { RolesGuard } from './features/auth/guards/roles.guard';
 import { UsersModule } from './features/users/users.module';
 import { PasswordService } from './util/password.service';
+import { TwilioClientService } from './util/twilio-client.service';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { PasswordService } from './util/password.service';
       useClass: ThrottlerGuard,
     },
     PasswordService,
+    TwilioClientService,
   ],
 })
 export class AppModule {}

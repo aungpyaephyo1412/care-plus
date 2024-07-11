@@ -1,19 +1,13 @@
 import Provider from '@/components/provider';
 import { cn } from '@/lib/utils';
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
 import { SunIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import localFont from 'next/font/local';
+import { ReactNode } from 'react';
 import './globals.css';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-});
 const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), {
   loading: () => (
     <button className='flex size-10 items-center justify-center rounded-full opacity-80 outline-none transition-opacity hover:opacity-100'>
@@ -63,18 +57,15 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={cn(geistSans.variable, geistMono.variable)}
+        className={cn(GeistSans.variable, GeistMono.variable)}
         suppressHydrationWarning
       >
-        <Provider>
-          {/*<ThemeToggle />*/}
-          {children}
-        </Provider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

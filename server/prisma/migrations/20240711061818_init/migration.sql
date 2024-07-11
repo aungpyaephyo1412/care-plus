@@ -9,7 +9,6 @@ CREATE TABLE "User" (
     "password" TEXT NOT NULL,
     "address" TEXT,
     "dateOfBirth" TIMESTAMP(3),
-    "age" INTEGER NOT NULL,
     "role" "Role" NOT NULL DEFAULT 'User',
     "resetToken" TEXT,
     "resetTokenExpired" TIMESTAMP(3),

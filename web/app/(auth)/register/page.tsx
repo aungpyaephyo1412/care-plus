@@ -1,30 +1,27 @@
 'use client';
 import { register } from '@/app/(auth)/register/register.action';
 import DatePicker from '@/components/date-picker';
+import LogoFull from '@/components/logo-full';
 import SubmitButton from '@/components/submit-button';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import ValidationInput from '@/components/validation-input';
-import { Leaf, Lock, MapPin, Phone, User } from 'lucide-react';
+import { Lock, MapPin, Phone, User } from 'lucide-react';
 import { useAction } from 'next-safe-action/hooks';
-import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const Page = () => {
   const [date, setDate] = useState<Date | null>(null);
   const {
-    result: { data, serverError, validationErrors, fetchError },
+    result: { data, validationErrors },
     execute,
     isExecuting,
   } = useAction(register);
   return (
     <div className='w-full'>
       <div className='w-full mb-7  '>
-        <Image
-          src={'/logo-full.svg'}
-          alt={'Logo'}
-          width={200}
-          height={100}
-          className='mb-7'
-        />
+        <LogoFull />
         <h1 className='text-[36px] font-semibold mb-5'>Hi there 👋</h1>
         <p className='text-sm text-[#abb8c4]'>
           Register your account to Schedule your first appointment.
@@ -38,7 +35,6 @@ const Page = () => {
             phone: e.currentTarget.phone.value,
             password: e.currentTarget.password.value,
             address: e.currentTarget.address.value,
-            age: parseInt(e.currentTarget.age.value),
             dateOfBirth: date?.toISOString(),
           };
           execute(body);
@@ -49,50 +45,38 @@ const Page = () => {
           <ValidationInput
             title={'Full Name'}
             startItem={<User className={'size-4'} />}
-            placeholder='Your name'
+            placeholder='Mg Mg'
             name={'fullName'}
             errorMessage={validationErrors?.name?._errors[0]}
           />
           <ValidationInput
             title={'Phone Number'}
             startItem={<Phone className={'size-4'} />}
-            placeholder={'Phone Number'}
+            placeholder={'09123456789'}
             name={'phone'}
-            errorMessage={validationErrors?.phone?._errors[0]}
+            errorMessage={data?.phone || validationErrors?.phone?._errors[0]}
           />
         </div>
+        <ValidationInput
+          title={'Password'}
+          startItem={<Lock className='size-4' />}
+          type={'password'}
+          name={'password'}
+          errorMessage={validationErrors?.password?._errors[0]}
+        />
         <div className='grid gap-5 grid-cols-2'>
           <ValidationInput
             title={'Address'}
             startItem={<MapPin className={'size-4'} />}
-            placeholder='Your address'
+            placeholder='township, city, state'
             name={'address'}
             errorMessage={validationErrors?.address?._errors[0]}
           />
-          <ValidationInput
-            title={'Your age'}
-            startItem={<Leaf className={'size-4'} />}
-            placeholder={'Age'}
-            name={'age'}
-            min={0}
-            type={'number'}
-            errorMessage={validationErrors?.age?._errors[0]}
-          />
-        </div>
-        <div className='grid grid-cols-2 gap-5'>
           <DatePicker
             title={'Your birthday date'}
             onChange={setDate}
             date={date}
             errorMessage={validationErrors?.dateOfBirth?._errors[0]}
-          />
-          <ValidationInput
-            title={'Password'}
-            startItem={<Lock className='size-4' />}
-            placeholder={'Password'}
-            type={'password'}
-            name={'password'}
-            errorMessage={validationErrors?.password?._errors[0]}
           />
         </div>
         <SubmitButton
@@ -100,6 +84,15 @@ const Page = () => {
           className='w-full'
           name={'Get Started'}
         />
+        <Separator />
+        <div className='w-full grid lg:grid-cols-2 gap-5'>
+          <Button variant={'outline'} asChild>
+            <Link href={'/forgot-password'}>Forgot Password?</Link>
+          </Button>
+          <Button variant={'secondary'} asChild>
+            <Link href={'/login'}>Already have an account? Log in</Link>
+          </Button>
+        </div>
       </form>
     </div>
   );
