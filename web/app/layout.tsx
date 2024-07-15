@@ -2,20 +2,10 @@ import Provider from '@/components/provider';
 import { cn } from '@/lib/utils';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
-import { SunIcon } from 'lucide-react';
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import { ReactNode } from 'react';
 import './globals.css';
 
-const ThemeToggle = dynamic(() => import('@/components/theme-toggle'), {
-  loading: () => (
-    <button className='flex size-10 items-center justify-center rounded-full opacity-80 outline-none transition-opacity hover:opacity-100'>
-      <SunIcon />
-    </button>
-  ),
-  ssr: false,
-});
 export const metadata: Metadata = {
   metadataBase: new URL('https://care-plus.vercel.app'),
   title: {
@@ -28,7 +18,7 @@ export const metadata: Metadata = {
     title: 'Care Plus',
     description:
       'Care Plus is a comprehensive web-a-1 application for booking and managing medical check-up appointments. Ensure your health and wellness with our easy-to-use scheduling system.',
-    url: 'https://aungpyaephyo.vercel.app',
+    url: 'https://care-plus.vercel.app',
     siteName: 'Care Plus',
     locale: 'en_US',
     type: 'website',
