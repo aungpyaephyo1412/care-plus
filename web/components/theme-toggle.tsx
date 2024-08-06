@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +16,9 @@ function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button
+        <Button
+          size={'icon'}
+          variant={'secondary'}
           onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           className='flex size-10 items-center justify-center rounded-full opacity-80 outline-none transition-opacity hover:opacity-100'
         >
@@ -25,9 +28,9 @@ function ThemeToggle() {
             <MoonIcon className='size-5' />
           )}
           <span className='sr-only'>Toggle theme</span>
-        </button>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-fit' align='end'>
+      <DropdownMenuContent className='w-fit' align='center' side='top'>
         {/* eslint-disable-next-line react/jsx-no-undef */}
         <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
           <DropdownMenuRadioItem value='system'>Auto</DropdownMenuRadioItem>
